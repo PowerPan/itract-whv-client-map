@@ -34,7 +34,7 @@ function get_stop_data_from_server(){
 	//Get Stops and bring them to the map
 	//URL call: http://itract.cs.kau.se:8081/proxy/api/transit/stopsInArea?lat=59.377398154058596&lon=13.518367104629524&southWestLat=59.35938051789711&southWestLon=13.44953089247133&northEastLat=59.39540622331862&northEastLon=13.587203316787736
 	if(map.getZoom() > 12){
-		$.getJSON(proxy_URL + "//api/transit/stopsInArea?lat="+map.getBounds().getCenter().lat+"&lon="+map.getBounds().getCenter().lng+"&southWestLat="+map.getBounds().getSouthWest().lat+"&southWestLon="+map.getBounds().getSouthWest().lng+"&northEastLat="+map.getBounds().getNorthEast().lat+"&northEastLon="+map.getBounds().getNorthEast().lng,function(data){
+		$.getJSON(proxy_URL + "/api/transit/stopsInArea?lat="+map.getBounds().getCenter().lat+"&lon="+map.getBounds().getCenter().lng+"&southWestLat="+map.getBounds().getSouthWest().lat+"&southWestLon="+map.getBounds().getSouthWest().lng+"&northEastLat="+map.getBounds().getNorthEast().lat+"&northEastLon="+map.getBounds().getNorthEast().lng,function(data){
 			remove_all_markers();
 			if(data.length > 0)
 				add_stops_to_map(data)
@@ -174,7 +174,7 @@ function fill_departures_stop_popup_content(popup){
 	
 
 	//Load all Routes that are on this Stop
-	$.getJSON(proxy_URL + "//api/transit/routesForStop?lat="+map.getBounds().getCenter().lat+"&lon="+map.getBounds().getCenter().lng+"&agencyId=&stopId="+stop_id,function(data){
+	$.getJSON(proxy_URL + "/api/transit/routesForStop?lat="+map.getBounds().getCenter().lat+"&lon="+map.getBounds().getCenter().lng+"&agencyId=&stopId="+stop_id,function(data){
 		var routes = new Array();
 		for(i = 0;i < data.length;i++){
 			for(j = 0;j < data[i].data.length;j++){
@@ -203,7 +203,7 @@ function fill_departures_stop_popup_content(popup){
 	    "</div>" +
 	    "<hr/>" +
 	    "<div id='popup_deparutres_alert_field_"+stop_id+"' class='alerts'></div>" +
-	    		"<div><a href='../display/?stops="+childStops.join()+"&lat="+((Math.round(map.getCenter().lat*1000))/1000)+"&lng="+((Math.round(map.getCenter().lng*1000))/1000)+"&agencys="+stop_infos[stop_id].agencys.join()+"' target='_blank' >Departure Display</a></div>";
+	    		"<div><a href='../display/?stops="+childStops.join()+"&lat="+((Math.round(map.getCenter().lat*1000))/1000)+"&lng="+((Math.round(map.getCenter().lng*1000))/1000)+"&agencys="+stop_infos[stop_id].agencys.join()+"&stopname="+ encodeURIComponent(stop_infos[stop_id]["name"]) +"' target='_blank' >Departure Display</a></div>";
 	    
 	    for(i = 0;i < routes.length;i++){
 	    	if(typeof routes[i].shortName === 'undefined'){}
@@ -263,7 +263,7 @@ function load_alerts(popup,stop_ids,agencys){
 }
 
 function load_alerts_from_server(popup,agency_stop_combinations,alerts){
-	$.getJSON(proxy_URL + "//api/transit/alerts?lat="+map.getCenter().lat+"&lon="+map.getCenter().lng+"&agencyId="+agency_stop_combinations[0].agency+"&stopId="+agency_stop_combinations[0].stop,function(data){
+	$.getJSON(proxy_URL + "/api/transit/alerts?lat="+map.getCenter().lat+"&lon="+map.getCenter().lng+"&agencyId="+agency_stop_combinations[0].agency+"&stopId="+agency_stop_combinations[0].stop,function(data){
 		
 		for(var i = 0; i < data.length;i++){
 			for(var j = 0; j < data[i].data.patches.length;j++){

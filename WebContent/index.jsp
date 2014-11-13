@@ -54,8 +54,8 @@
 	
 	var osmURL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     osm = new L.TileLayer(osmURL, {maxZoom: 18});
-	
-	var map = L.map('map').setView([map_center_lat, map_center_lng], map_center_zoom);
+
+	var map = L.map('map').setView([map_center_lat, map_center_lng], map_zoom);
 	
 	var hash = new L.Hash(map);
 
