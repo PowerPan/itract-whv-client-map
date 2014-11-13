@@ -1,0 +1,57 @@
+.leaflet-popup-content-wrapper {
+    background-image: -webkit-linear-gradient(#12436C 0%, #82b2cc 100%);
+    background-image: -moz-linear-gradient(#12436C 0%, #82b2cc 100%);
+    background-image: -o-linear-gradient(#12436C 0%, #82b2cc 100%);
+    background-image: linear-gradient(#12436C 0%, #82b2cc 100%);
+}
+
+.leaflet-popup-content {
+    color: white;
+}
+
+.popup_departures h2 {
+    color: white;
+    font-weight: bold;
+    margin-bottom: 3px;
+    margin-top: 5px;
+}
+
+.header_row_route{
+	min-width: 50px;
+    font-weight: bold;
+}
+
+.header_row_destination{
+	width: 95%;
+    font-weight: bold;
+}
+
+.header_row_departure{
+	font-weight: bold;
+}
+
+.pdfplanbutton {
+    background-color: #ffffff;
+    border: 1px solid;
+    border-radius: 8px;
+    display: inline-block;
+    float: left;
+    height: 15px;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    text-align: center;
+    width: 30px;
+    color: black;
+}
+
+.alerts{
+	color: gold;
+	font-weight: bold;
+}
+
+a{
+	color:gold !important;
+	font-weight: bold;
+}
+
+.clear { clear: both; }
