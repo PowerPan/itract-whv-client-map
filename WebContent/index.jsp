@@ -26,7 +26,7 @@
 <script src="leaflet/label/Map.Label.js"></script>
 <script src="leaflet/hash/leaflet-hash.js"></script>
 
-<script src="proxy_URL_config.js"></script>
+<script src="config.js"></script>
 <script src="javascript/stops.js"></script>
 <script src="javascript/routeplanner.js"></script>
 <script src="javascript/vehicle.js"></script>
@@ -55,7 +55,7 @@
 	var osmURL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     osm = new L.TileLayer(osmURL, {maxZoom: 18});
 	
-	var map = L.map('map').setView([53.55145, 8.0808], 13);
+	var map = L.map('map').setView([map_center_lat, map_center_lng], map_center_zoom);
 	
 	var hash = new L.Hash(map);
 
