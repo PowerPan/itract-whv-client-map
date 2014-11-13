@@ -15,7 +15,7 @@ function vehicle_init(){
 
 function update_vehicles(){
 	if(map.getZoom() > 8){
-		$.getJSON("http://itract.cs.kau.se:8081/proxy/api/transit/vehicleLocations?lat="+map.getBounds().getCenter().lat+"&lon="+map.getBounds().getCenter().lng+"&southWestLat="+map.getBounds().getSouthWest().lat+"&southWestLon="+map.getBounds().getSouthWest().lng+"&northEastLat="+map.getBounds().getNorthEast().lat+"&northEastLon="+map.getBounds().getNorthEast().lng,function(data){
+		$.getJSON(proxy_URL + "/api/transit/vehicleLocations?lat="+map.getBounds().getCenter().lat+"&lon="+map.getBounds().getCenter().lng+"&southWestLat="+map.getBounds().getSouthWest().lat+"&southWestLon="+map.getBounds().getSouthWest().lng+"&northEastLat="+map.getBounds().getNorthEast().lat+"&northEastLon="+map.getBounds().getNorthEast().lng,function(data){
 			for(i = 0;i < data.length;i++){
 				for(j = 0; j < data[i].data.length;j++){
 					for(k = 0; k < data[i].data[j].vehicles.length;k++){

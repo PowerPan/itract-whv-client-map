@@ -19,6 +19,8 @@ if(screen.width < max_popupwidth){
 	max_popupwidth = screen.width-100;
 }
 
+console.log("Proxy URL: "+proxy_URL);
+
 
 
 //Use to check which Stop Popup is open needed to stop JSON calls for closed stops
@@ -32,7 +34,7 @@ function get_stop_data_from_server(){
 	//Get Stops and bring them to the map
 	//URL call: http://itract.cs.kau.se:8081/proxy/api/transit/stopsInArea?lat=59.377398154058596&lon=13.518367104629524&southWestLat=59.35938051789711&southWestLon=13.44953089247133&northEastLat=59.39540622331862&northEastLon=13.587203316787736
 	if(map.getZoom() > 12){
-		$.getJSON("http://itract.cs.kau.se:8081/proxy/api/transit/stopsInArea?lat="+map.getBounds().getCenter().lat+"&lon="+map.getBounds().getCenter().lng+"&southWestLat="+map.getBounds().getSouthWest().lat+"&southWestLon="+map.getBounds().getSouthWest().lng+"&northEastLat="+map.getBounds().getNorthEast().lat+"&northEastLon="+map.getBounds().getNorthEast().lng,function(data){
+		$.getJSON(proxy_URL + "//api/transit/stopsInArea?lat="+map.getBounds().getCenter().lat+"&lon="+map.getBounds().getCenter().lng+"&southWestLat="+map.getBounds().getSouthWest().lat+"&southWestLon="+map.getBounds().getSouthWest().lng+"&northEastLat="+map.getBounds().getNorthEast().lat+"&northEastLon="+map.getBounds().getNorthEast().lng,function(data){
 			remove_all_markers();
 			if(data.length > 0)
 				add_stops_to_map(data)
@@ -172,7 +174,7 @@ function fill_departures_stop_popup_content(popup){
 	
 
 	//Load all Routes that are on this Stop
-	$.getJSON("http://itract.cs.kau.se:8081/proxy/api/transit/routesForStop?lat="+map.getBounds().getCenter().lat+"&lon="+map.getBounds().getCenter().lng+"&agencyId=&stopId="+stop_id,function(data){
+	$.getJSON(proxy_URL + "//api/transit/routesForStop?lat="+map.getBounds().getCenter().lat+"&lon="+map.getBounds().getCenter().lng+"&agencyId=&stopId="+stop_id,function(data){
 		var routes = new Array();
 		for(i = 0;i < data.length;i++){
 			for(j = 0;j < data[i].data.length;j++){
@@ -261,7 +263,7 @@ function load_alerts(popup,stop_ids,agencys){
 }
 
 function load_alerts_from_server(popup,agency_stop_combinations,alerts){
-	$.getJSON("http://itract.cs.kau.se:8081/proxy/api/transit/alerts?lat="+map.getCenter().lat+"&lon="+map.getCenter().lng+"&agencyId="+agency_stop_combinations[0].agency+"&stopId="+agency_stop_combinations[0].stop,function(data){
+	$.getJSON(proxy_URL + "//api/transit/alerts?lat="+map.getCenter().lat+"&lon="+map.getCenter().lng+"&agencyId="+agency_stop_combinations[0].agency+"&stopId="+agency_stop_combinations[0].stop,function(data){
 		
 		for(var i = 0; i < data.length;i++){
 			for(var j = 0; j < data[i].data.patches.length;j++){
@@ -314,7 +316,7 @@ function load_departures(stop_id,stop_ids,departures,stop_ids_untouched){
 	var now = new Date();
 	start_time = Date.parse(now);
 	end_time = start_time+86400000;
-	$.getJSON("http://itract.cs.kau.se:8081/proxy/api/transit/arrivalsAndDeparturesForStop?lat="+map.getBounds().getCenter().lat+"&lon="+map.getBounds().getCenter().lng+"&agencyId=&stopId="+stop_ids[0]+"&startTime="+start_time+"&endTime="+end_time+"&numArrivals=0&numDepartures=5",function(data){
+	$.getJSON(proxy_URL + "/api/transit/arrivalsAndDeparturesForStop?lat="+map.getBounds().getCenter().lat+"&lon="+map.getBounds().getCenter().lng+"&agencyId=&stopId="+stop_ids[0]+"&startTime="+start_time+"&endTime="+end_time+"&numArrivals=0&numDepartures=5",function(data){
 		for(i = 0;i < data.length;i++){
 			for(j = 0;j < data[i].data.departures.length;j++){
 				departures.push(data[i].data.departures[j]);	

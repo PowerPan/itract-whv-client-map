@@ -26,6 +26,7 @@
 <script src="leaflet/label/Map.Label.js"></script>
 <script src="leaflet/hash/leaflet-hash.js"></script>
 
+<script src="proxy_URL_config.js"></script>
 <script src="javascript/stops.js"></script>
 <script src="javascript/routeplanner.js"></script>
 <script src="javascript/vehicle.js"></script>

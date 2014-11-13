@@ -80,7 +80,7 @@ function get_routeplanner_plan(){
 	$("#routepalnner-loading-indicator").show();
 	date = "2014-07-14";
 	time = $("#routeplanner-time").val();
-	$.getJSON("http://itract.cs.kau.se:8081/proxy/api/transit/plan?lat="+map.getCenter().lat+"&lon="+map.getCenter().lng+"&fromLat="+routeplanner_startpoint.lat+"&fromLon="+routeplanner_startpoint.lng+"&toLat="+routeplanner_endpoint.lat+"&toLon="+routeplanner_endpoint.lng+"&date="+date+"&time="+time+"&showIntermediateStops=true&maxWalkDistance=1500",function(data){
+	$.getJSON(proxy_URL + "/api/transit/plan?lat="+map.getCenter().lat+"&lon="+map.getCenter().lng+"&fromLat="+routeplanner_startpoint.lat+"&fromLon="+routeplanner_startpoint.lng+"&toLat="+routeplanner_endpoint.lat+"&toLon="+routeplanner_endpoint.lng+"&date="+date+"&time="+time+"&showIntermediateStops=true&maxWalkDistance=1500",function(data){
 		routes = new Array();
 		max_routeversion = 0;
 		for(i = 0; i < data.length;i++){
