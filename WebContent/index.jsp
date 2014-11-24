@@ -6,19 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link REL="SHORTCUT ICON" HREF="images/itract_logo.png">
 <link rel="stylesheet" href="leaflet/leaflet.css" />
-<link rel="stylesheet" href="leaflet/locatecontrol/L.Control.Locate.css" />
- <!--[if IE ]>
-     <link rel="stylesheet" href="leaflet/leaflet.ie.css" />
-     <link rel="stylesheet" href="leaflet/locatecontrol/L.Control.Locate.ie.css" />
- <![endif]-->
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/stop.css" />
 <link rel="stylesheet" href="css/routeplanner.css" />
 
 <script src="jquery/jquery-2.1.1.min.js"></script>
 <script src="leaflet/leaflet.js"></script>
-
-<script src="leaflet/locatecontrol/L.Control.Locate.js"></script>
 
 <script src="leaflet/label/Label.js"></script>
 <script src="leaflet/label/BaseMarkerMethods.js"></script>
@@ -66,8 +59,6 @@
 	routeplanner_init();
 	
 	vehicle_init();
-	
-	L.control.locate().addTo(map);
 	
 	map.on('moveend', function(e){
 		get_stop_data_from_server();
